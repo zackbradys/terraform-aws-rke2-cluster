@@ -29,6 +29,7 @@ variable "prefix" {
   description = "(Required) The prefix/name for all provisioned resources."
 }
 
+### Optional Variables
 variable "token" {
   default     = "awsRKE2terraform"
   type        = string
