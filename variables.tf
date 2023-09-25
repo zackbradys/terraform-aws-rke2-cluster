@@ -66,14 +66,14 @@ variable "private_subnet_cidr_blocks" {
   description = "(Optional) The AWS Subnet CIDR Blocks to use for the instance(s)."
 }
 
-variable "associate_public_ip_address" {
-  default     = true
-  type        = bool
-  description = "(Optional) Associate AWS Public IP Address for use for the instance(s)."
-}
-
 ### Instance Variables
 variable "instance_type_control" {
+  default     = "m6a.xlarge"
+  type        = string
+  description = "(Optional) The AWS Instance type to use for the instance(s)."
+}
+
+variable "instance_type_controls" {
   default     = "m6a.xlarge"
   type        = string
   description = "(Optional) The AWS Instance type to use for the instance(s)."
@@ -104,7 +104,7 @@ variable "number_of_instances_controls" {
 }
 
 variable "number_of_instances_worker" {
-  default     = 0
+  default     = 3
   type        = number
   description = "(Optional) The number of AWS EC2 instances to create on deployment."
 }
@@ -113,25 +113,6 @@ variable "number_of_instances_bastion" {
   default     = 1
   type        = number
   description = "(Optional) The number of AWS EC2 instances to create on deployment."
-}
-
-### User Data Variables
-variable "user_data_control" {
-  default     = "scripts/control-node.sh"
-  type        = string
-  description = "(Optional) The AWS User Data to use for the instance(s)."
-}
-
-variable "user_data_controls" {
-  default     = "scripts/control-nodes.sh"
-  type        = string
-  description = "(Optional) The AWS User Data to use for the instance(s)."
-}
-
-variable "user_data_workers" {
-  default     = "scripts/worker-nodes.sh"
-  type        = string
-  description = "(Optional) The AWS User Data to use for the instance(s)."
 }
 
 ### Storage Variables
@@ -154,7 +135,7 @@ variable "volume_size_worker" {
 }
 
 variable "volume_size_bastion" {
-  default     = 16
+  default     = 32
   type        = number
   description = "(Optional) The AWS Volume Size to use for the instance(s)."
 }

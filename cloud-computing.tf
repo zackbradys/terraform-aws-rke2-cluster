@@ -9,7 +9,7 @@ resource "aws_instance" "aws_ec2_instance_control" {
   key_name               = var.key_pair_name
   depends_on             = [aws_nat_gateway.aws_rke2_ngw]
 
-  user_data = templatefile("${var.user_data_control}", {
+  user_data = templatefile("scripts/control-node.sh", {
     DOMAIN = "${var.domain}"
     TOKEN  = "${var.token}"
     vRKE2  = "${var.vRKE2}"
@@ -33,7 +33,7 @@ resource "aws_instance" "aws_ec2_instance_control" {
 
 resource "aws_instance" "aws_ec2_instance_controls" {
   ami           = var.ami_id
-  instance_type = var.instance_type_control
+  instance_type = var.instance_type_controls
   count         = var.number_of_instances_controls
 
   vpc_security_group_ids = [aws_security_group.aws_rke2_sg.id]
@@ -42,7 +42,7 @@ resource "aws_instance" "aws_ec2_instance_controls" {
   key_name               = var.key_pair_name
   depends_on             = [aws_instance.aws_ec2_instance_control, aws_nat_gateway.aws_rke2_ngw]
 
-  user_data = templatefile("${var.user_data_controls}", {
+  user_data = templatefile("scripts/control-nodes.sh", {
     DOMAIN = "${var.domain}"
     TOKEN  = "${var.token}"
     vRKE2  = "${var.vRKE2}"
@@ -75,7 +75,7 @@ resource "aws_instance" "aws_ec2_instance_worker" {
   key_name               = var.key_pair_name
   depends_on             = [aws_instance.aws_ec2_instance_control, aws_instance.aws_ec2_instance_controls, aws_nat_gateway.aws_rke2_ngw]
 
-  user_data = templatefile("${var.user_data_workers}", {
+  user_data = templatefile("scripts/worker-nodes.sh", {
     DOMAIN = "${var.domain}"
     TOKEN  = "${var.token}"
     vRKE2  = "${var.vRKE2}"
@@ -104,7 +104,7 @@ resource "aws_instance" "aws_ec2_instance_bastion" {
 
   vpc_security_group_ids      = [aws_security_group.aws_rke2_sg.id]
   subnet_id                   = element([aws_subnet.aws_rke2_public_subnet1.id, aws_subnet.aws_rke2_public_subnet2.id, aws_subnet.aws_rke2_public_subnet3.id], count.index % 3)
-  associate_public_ip_address = var.associate_public_ip_address
+  associate_public_ip_address = true
   key_name                    = var.key_pair_name
   depends_on                  = [aws_nat_gateway.aws_rke2_ngw]
 
