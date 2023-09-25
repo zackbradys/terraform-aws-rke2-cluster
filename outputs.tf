@@ -4,7 +4,7 @@ output "timestamp" {
 }
 
 output "instance_ips_bastion" {
-  value       = ["${aws_instance.aws_ec2_instance_bastion.*.public}"]
+  value       = ["${aws_instance.aws_ec2_instance_bastion.*.public_ip}"]
   description = "IP for the Bastion Host in the AWS RKE2 cluster"
 }
 
