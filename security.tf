@@ -15,6 +15,7 @@ resource "aws_security_group_rule" "aws_rke2_sg_ingress1" {
   protocol          = "TCP"
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.aws_rke2_sg.id
+  depends_on        = [aws_security_group.aws_rke2_sg]
   description       = "Allow SSH Communication"
 }
 
@@ -25,6 +26,7 @@ resource "aws_security_group_rule" "aws_rke2_sg_ingress2" {
   protocol          = "TCP"
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.aws_rke2_sg.id
+  depends_on        = [aws_security_group.aws_rke2_sg]
   description       = "Allow RKE2 Agent Communication"
 }
 
@@ -35,6 +37,7 @@ resource "aws_security_group_rule" "aws_rke2_sg_ingress3" {
   protocol          = "TCP"
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.aws_rke2_sg.id
+  depends_on        = [aws_security_group.aws_rke2_sg]
   description       = "Allow RKE2 Server Communication"
 }
 
@@ -45,6 +48,7 @@ resource "aws_security_group_rule" "aws_rke2_sg_ingress4" {
   protocol          = "TCP"
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.aws_rke2_sg.id
+  depends_on        = [aws_security_group.aws_rke2_sg]
   description       = "Allow Ingress Communication"
 }
 
@@ -55,6 +59,7 @@ resource "aws_security_group_rule" "aws_rke2_sg_ingress5" {
   protocol          = "TCP"
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.aws_rke2_sg.id
+  depends_on        = [aws_security_group.aws_rke2_sg]
   description       = "Allow Secure Ingress Communication"
 }
 
@@ -65,6 +70,7 @@ resource "aws_security_group_rule" "aws_rke2_sg_ingress6" {
   protocol          = "TCP"
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.aws_rke2_sg.id
+  depends_on        = [aws_security_group.aws_rke2_sg]
   description       = "Allow RKE2 Miscellanous Communication"
 }
 
@@ -75,6 +81,7 @@ resource "aws_security_group_rule" "aws_rke2_sg_ingress7" {
   protocol          = "TCP"
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.aws_rke2_sg.id
+  depends_on        = [aws_security_group.aws_rke2_sg]
   description       = "Allow RKE2 Kubelet Communication"
 }
 
@@ -85,6 +92,7 @@ resource "aws_security_group_rule" "aws_rke2_sg_ingress8" {
   protocol          = "TCP"
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.aws_rke2_sg.id
+  depends_on        = [aws_security_group.aws_rke2_sg]
   description       = "Allow RKE2 ECTD Communication"
 }
 
@@ -95,6 +103,7 @@ resource "aws_security_group_rule" "aws_rke2_sg_ingress9" {
   protocol          = "TCP"
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.aws_rke2_sg.id
+  depends_on        = [aws_security_group.aws_rke2_sg]
   description       = "Allow RKE2 Calico Communication"
 }
 
@@ -105,6 +114,7 @@ resource "aws_security_group_rule" "aws_rke2_sg_ingress10" {
   protocol          = "UDP"
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.aws_rke2_sg.id
+  depends_on        = [aws_security_group.aws_rke2_sg]
   description       = "Allow RKE2 VXLAN Communication"
 }
 
@@ -115,6 +125,7 @@ resource "aws_security_group_rule" "aws_rke2_sg_ingress11" {
   protocol          = "TCP"
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.aws_rke2_sg.id
+  depends_on        = [aws_security_group.aws_rke2_sg]
   description       = "Allow Rancher NeuVector Communication"
 }
 
@@ -125,6 +136,7 @@ resource "aws_security_group_rule" "aws_rke2_sg_ingress12" {
   protocol          = "TCP"
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.aws_rke2_sg.id
+  depends_on        = [aws_security_group.aws_rke2_sg]
   description       = "Allow Rancher NeuVector Communication"
 }
 
@@ -135,5 +147,6 @@ resource "aws_security_group_rule" "aws_rke2_sg_egress1" {
   protocol          = "-1"
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.aws_rke2_sg.id
+  depends_on        = [aws_security_group.aws_rke2_sg]
   description       = "Allow All Egress Communication"
 }
