@@ -9,13 +9,13 @@ WIP WIP WIP WIP WIP
 
 ## Configuration
 
-**Step 1:** Create a working directory.
+**Step 1:** Ensure Terraform is installed and create a working directory.
 
 **Step 2:** Copy the code below into a file named `main.tf` and set the required variables or additional optional variables!
 ```bash
 module "rke2-cluster" {
   source  = "zackbradys/rke2-cluster/aws"
-  version = "0.3.0"
+  version = "0.3.1"
 
   region        = ""
   access_key    = ""
