@@ -14,40 +14,18 @@ Add the module code to `main.tf` and set the required variables or additional op
 ```bash
 module "rke2-cluster" {
   source  = "zackbradys/rke2-cluster/aws"
-  version = "0.1.0"
+  version = "0.2.0"
 
-  region        = var.region
-  access_key    = var.access_key
-  secret_key    = var.secret_key
-  key_pair_name = var.key_pair_name
-  domain        = var.domain
-  prefix        = var.prefix
+  region        = ""
+  access_key    = ""
+  secret_key    = ""
+  key_pair_name = ""
+  domain        = ""
+  prefix        = ""
 }
 ```
 
 ### Step 2
-Add the following code to your `terraform.tfvars` and input your variables.
-```bash
-### (Required) The AWS Region to use for the instance(s).
-region = ""
-
-### (Required) The AWS Access Key to use for the instance(s).
-access_key = ""
-
-### (Required) The AWS Secret Key to use for the instance(s).
-secret_key = ""
-
-### (Required) The AWS Key Pair name to use for the instance(s).
-key_pair_name = ""
-
-### (Required) The AWS Route53 domain to use for the cluster(s).
-domain = ""
-
-### (Required) The prefix/name for all provisioned resources.
-prefix = ""
-```
-
-### Step 3
 Run the terraform commands to deploy and provision your infrastructure!
 ```bash
 terraform init
@@ -64,7 +42,7 @@ Please utilize GitHubs features such as Issues, Forks, and Pull Requests to cont
 
 ### About Me
 A little bit about me, my history, and what I've done in the industry. If you have any questions, please reach out to me on my GitHub (https://github.com/zackbradys)!
-- DOD/IC Contractor
+- Former Contractor
 - U.S. Military Veteran
 - Open-Source Contributor
 - Built and Exited a Digital Firm

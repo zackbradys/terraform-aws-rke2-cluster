@@ -2,6 +2,7 @@ resource "aws_route53_zone" "aws_rke2_zone" {
   name          = var.domain
   force_destroy = true
   comment       = "AWS RKE2 Route53 Hosted Zone"
+  depends_on = [aws_vpc.aws_rke2_vpc]
 }
 
 resource "aws_route53_record" "aws_rke2_record_rke2" {

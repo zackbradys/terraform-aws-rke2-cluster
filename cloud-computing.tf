@@ -9,7 +9,7 @@ resource "aws_instance" "aws_ec2_instance_control" {
   key_name               = var.key_pair_name
   depends_on             = [aws_nat_gateway.aws_rke2_ngw]
 
-  user_data = templatefile("scripts/control-node.sh", {
+  user_data = templatefile("${path.module}/scripts/control-node.sh", {
     DOMAIN = "${var.domain}"
     TOKEN  = "${var.token}"
     vRKE2  = "${var.vRKE2}"
@@ -42,14 +42,14 @@ resource "aws_instance" "aws_ec2_instance_controls" {
   key_name               = var.key_pair_name
   depends_on             = [aws_instance.aws_ec2_instance_control, aws_nat_gateway.aws_rke2_ngw]
 
-  user_data = templatefile("scripts/control-nodes.sh", {
+  user_data = templatefile("${path.module}/scripts/control-nodes.sh", {
     DOMAIN = "${var.domain}"
     TOKEN  = "${var.token}"
     vRKE2  = "${var.vRKE2}"
   })
 
   tags = {
-    Name = "${var.prefix}-cp-0${count.index + 1}"
+    Name = "${var.prefix}-cps-0${count.index + 1}"
   }
 
   root_block_device {
@@ -59,7 +59,7 @@ resource "aws_instance" "aws_ec2_instance_controls" {
     delete_on_termination = var.delete_on_termination
 
     tags = {
-      Name = "${var.prefix}-cp-volume-0${count.index + 1}"
+      Name = "${var.prefix}-cps-volume-0${count.index + 1}"
     }
   }
 }
@@ -75,7 +75,7 @@ resource "aws_instance" "aws_ec2_instance_worker" {
   key_name               = var.key_pair_name
   depends_on             = [aws_instance.aws_ec2_instance_control, aws_instance.aws_ec2_instance_controls, aws_nat_gateway.aws_rke2_ngw]
 
-  user_data = templatefile("scripts/worker-nodes.sh", {
+  user_data = templatefile("${path.module}/scripts/worker-nodes.sh", {
     DOMAIN = "${var.domain}"
     TOKEN  = "${var.token}"
     vRKE2  = "${var.vRKE2}"
