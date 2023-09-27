@@ -15,7 +15,7 @@ WIP WIP WIP WIP WIP
 ```bash
 module "rke2-cluster" {
   source  = "zackbradys/rke2-cluster/aws"
-  version = "0.2.0"
+  version = "0.3.0"
 
   region        = ""
   access_key    = ""
