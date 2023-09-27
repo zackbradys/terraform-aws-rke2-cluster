@@ -9,8 +9,9 @@ WIP WIP WIP WIP WIP
 
 ## Configuration
 
-### Step 1
-Add the module code to `main.tf` and set the required variables or additional optional variables!
+**Step 1:** Create a working directory.
+
+**Step 2:** Copy the code below into a file named `main.tf` and set the required variables or additional optional variables!
 ```bash
 module "rke2-cluster" {
   source  = "zackbradys/rke2-cluster/aws"
@@ -25,16 +26,13 @@ module "rke2-cluster" {
 }
 ```
 
-### Step 2
-Run the terraform commands to deploy and provision your infrastructure!
+**Step 3:** Run the commands below to deploy and provision your infrastructure!
 ```bash
 terraform init
 
 terraform plan
 
 terraform apply --auto-approve
-
-terraform output
 ```
 
 ### Contributing
