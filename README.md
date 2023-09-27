@@ -5,7 +5,6 @@ WIP WIP WIP WIP WIP
 ## Prerequisites
 * Git Utility, Terminal Utility, and HashiCorp Terraform with Access to the AWS Provider
 * AWS Commercial or AWS GovCloud Account with an Access Key and Secret Key
-* Ability to Subscribe to the [AWS Marketplace Listing for the AMI for Rocky 9](https://aws.amazon.com/marketplace/pp/prodview-ygp66mwgbl2ii) or use your own AWS AMI.
 
 ## Configuration
 
@@ -15,7 +14,7 @@ WIP WIP WIP WIP WIP
 ```bash
 module "rke2-cluster" {
   source  = "zackbradys/rke2-cluster/aws"
-  version = "0.3.1"
+  version = "0.4.0"
 
   region        = ""
   access_key    = ""
