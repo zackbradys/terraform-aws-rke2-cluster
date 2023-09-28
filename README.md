@@ -1,6 +1,6 @@
 # Terraform Module for RKE2 on AWS
 
-WIP WIP WIP WIP WIP
+***WIP WIP WIP* - Follow the commands below to deploy this module!**
 
 ## Prerequisites
 * Git Utility, Terminal Utility, and HashiCorp Terraform with Access to the AWS Provider
@@ -14,7 +14,7 @@ WIP WIP WIP WIP WIP
 ```bash
 module "rke2-cluster" {
   source  = "zackbradys/rke2-cluster/aws"
-  version = "0.4.0"
+  version = "0.4.1"
 
   region        = ""
   access_key    = ""
