@@ -1,6 +1,6 @@
 # Terraform Module for RKE2 on AWS
 
-***Please review the information below and follow the instructions to deploy this module!**
+**Please review the information below and follow the instructions to deploy this module!**
 
 ## Prerequisites
 * Git Utility, Terminal Utility, and HashiCorp Terraform with Access to the AWS Provider
