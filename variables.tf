@@ -29,7 +29,13 @@ variable "prefix" {
   description = "(Required) The prefix/name for all provisioned resources."
 }
 
-### Optional Variables
+### Common Optional Variables
+variable "ami_id" {
+  default     = "ami-026ebd4cfe2c043b2"
+  type        = string
+  description = "(Optional) The AWS AMI ID to use for the instance(s)."
+}
+
 variable "token" {
   default     = "awsRKE2terraform"
   type        = string
@@ -40,12 +46,6 @@ variable "vRKE2" {
   default     = "v1.25"
   type        = string
   description = "(Optional) The RKE2 Version to use for the clusters(s)."
-}
-
-variable "ami_id" {
-  default     = "ami-026ebd4cfe2c043b2"
-  type        = string
-  description = "(Optional) The AWS AMI ID to use for the instance(s)."
 }
 
 ### Networking Variables
