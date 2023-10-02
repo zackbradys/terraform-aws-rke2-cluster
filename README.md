@@ -34,6 +34,8 @@ terraform plan
 terraform apply --auto-approve
 ```
 
+**Step 4:** Wait about 10 minutes and access your RKE2 Cluster! Typically, users SSH into the nodes via the bastion host to use *kubectl* on the node or users export the kubeconfig (`/etc/rancher/rke2/rke2.yaml`) to access the cluster and *kubectl* locally.
+
 ### Contributing
 Please utilize GitHubs features such as Issues, Forks, and Pull Requests to contribute to this code!
 
