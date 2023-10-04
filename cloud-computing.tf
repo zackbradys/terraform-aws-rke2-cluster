@@ -40,7 +40,7 @@ resource "aws_instance" "aws_ec2_instance_controls" {
   subnet_id              = element([aws_subnet.aws_rke2_private_subnet2.id, aws_subnet.aws_rke2_private_subnet3.id], count.index % 2)
   iam_instance_profile   = aws_iam_instance_profile.aws_iam_profile_control.name
   key_name               = var.key_pair_name
-  depends_on             = [aws_instance.aws_ec2_instance_control, aws_nat_gateway.aws_rke2_ngw]
+  depends_on             = [aws_instance.aws_ec2_instance_control]
 
   user_data = templatefile("${path.module}/scripts/control-nodes.sh", {
     DOMAIN = "${var.domain}"
@@ -73,7 +73,7 @@ resource "aws_instance" "aws_ec2_instance_worker" {
   subnet_id              = element([aws_subnet.aws_rke2_private_subnet1.id, aws_subnet.aws_rke2_private_subnet2.id, aws_subnet.aws_rke2_private_subnet3.id], count.index % 3)
   iam_instance_profile   = aws_iam_instance_profile.aws_iam_profile_worker.name
   key_name               = var.key_pair_name
-  depends_on             = [aws_instance.aws_ec2_instance_control, aws_instance.aws_ec2_instance_controls, aws_nat_gateway.aws_rke2_ngw]
+  depends_on             = [aws_instance.aws_ec2_instance_controls]
 
   user_data = templatefile("${path.module}/scripts/worker-nodes.sh", {
     DOMAIN = "${var.domain}"
