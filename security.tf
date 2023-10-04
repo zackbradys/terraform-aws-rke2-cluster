@@ -1,5 +1,6 @@
 resource "aws_security_group" "aws_rke2_sg" {
   vpc_id      = aws_vpc.aws_rke2_vpc.id
+  depends_on  = [aws_vpc.aws_rke2_vpc]
   description = "AWS RKE2 Security Group"
   name        = "${var.prefix}-sg"
 

@@ -14,7 +14,7 @@
 ```bash
 module "rke2-cluster" {
   source  = "zackbradys/rke2-cluster/aws"
-  version = "0.4.3"
+  version = "0.5.1"
 
   region        = "us-east-1"
   access_key    = "ACCESS_KEY_HERE"
@@ -40,7 +40,7 @@ terraform apply --auto-approve
 Please utilize GitHubs features such as Issues, Forks, and Pull Requests to contribute to this code!
 
 ### About Me
-A little bit about me, my history, and what I've done in the industry. If you have any questions, please reach out to me on my GitHub (https://github.com/zackbradys)!
+A little bit about me and my history in the industry. If you have any questions, please reach out to me over on my [GitHub](https://github.com/zackbradys)!
 - Former Contractor
 - U.S. Military Veteran
 - Open-Source Contributor
