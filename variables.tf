@@ -69,13 +69,13 @@ variable "private_subnet_cidr_blocks" {
 
 ### Instance Variables
 variable "instance_type_control" {
-  default     = "m5.xlarge"
+  default     = "m5.2xlarge"
   type        = string
   description = "(Optional) The AWS Instance type to use for the instance(s)."
 }
 
 variable "instance_type_controls" {
-  default     = "m5.xlarge"
+  default     = "m5.2xlarge"
   type        = string
   description = "(Optional) The AWS Instance type to use for the instance(s)."
 }
@@ -87,7 +87,7 @@ variable "instance_type_worker" {
 }
 
 variable "instance_type_bastion" {
-  default     = "t3.medium"
+  default     = "c5.large"
   type        = string
   description = "(Optional) The AWS Instance type to use for the instance(s)."
 }
