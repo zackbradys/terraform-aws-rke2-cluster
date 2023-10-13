@@ -7,11 +7,11 @@ resource "aws_route53_record" "aws_rke2_record_rke2" {
   name    = ""
   type    = "A"
   alias {
-    name                   = aws_elb.aws_rke2_lb.dns_name
-    zone_id                = aws_elb.aws_rke2_lb.zone_id
+    name                   = aws_elb.aws_rke2_elb.dns_name
+    zone_id                = aws_elb.aws_rke2_elb.zone_id
     evaluate_target_health = false
   }
-  depends_on = [aws_elb.aws_rke2_lb]
+  depends_on = [aws_elb.aws_rke2_elb]
 }
 
 resource "aws_route53_record" "aws_rke2_record_ingress" {
@@ -19,9 +19,9 @@ resource "aws_route53_record" "aws_rke2_record_ingress" {
   name    = "*"
   type    = "A"
   alias {
-    name                   = aws_elb.aws_rke2_ingress_lb.dns_name
-    zone_id                = aws_elb.aws_rke2_ingress_lb.zone_id
+    name                   = aws_elb.aws_rke2_ingress_elb.dns_name
+    zone_id                = aws_elb.aws_rke2_ingress_elb.zone_id
     evaluate_target_health = false
   }
-  depends_on = [aws_elb.aws_rke2_ingress_lb]
+  depends_on = [aws_elb.aws_rke2_ingress_elb]
 }
