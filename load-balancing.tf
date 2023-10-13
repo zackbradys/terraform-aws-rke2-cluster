@@ -1,4 +1,4 @@
-resource "aws_elb" "aws_rke2_lb" {
+resource "aws_elb" "aws_rke2_elb" {
   connection_draining         = false
   connection_draining_timeout = 300
   cross_zone_load_balancing   = true
@@ -45,20 +45,20 @@ resource "aws_elb" "aws_rke2_lb" {
 }
 
 resource "aws_elb_attachment" "aws_rke2_elb_attachment1" {
-  elb        = aws_elb.aws_rke2_lb.id
+  elb        = aws_elb.aws_rke2_elb.id
   count      = var.number_of_instances_control
   instance   = aws_instance.aws_ec2_instance_control[count.index].id
-  depends_on = [aws_elb.aws_rke2_lb]
+  depends_on = [aws_elb.aws_rke2_elb]
 }
 
 resource "aws_elb_attachment" "aws_rke2_elb_attachment2" {
-  elb        = aws_elb.aws_rke2_lb.id
+  elb        = aws_elb.aws_rke2_elb.id
   count      = var.number_of_instances_controls
   instance   = aws_instance.aws_ec2_instance_controls[count.index].id
-  depends_on = [aws_elb.aws_rke2_lb]
+  depends_on = [aws_elb.aws_rke2_elb]
 }
 
-resource "aws_elb" "aws_rke2_ingress_lb" {
+resource "aws_elb" "aws_rke2_ingress_elb" {
   connection_draining         = false
   connection_draining_timeout = 300
   cross_zone_load_balancing   = true
@@ -92,23 +92,23 @@ resource "aws_elb" "aws_rke2_ingress_lb" {
   }
 }
 
-resource "aws_elb_attachment" "aws_rke2_elb_attachment3" {
-  elb        = aws_elb.aws_rke2_ingress_lb.id
+resource "aws_elb_attachment" "aws_rke2_ingress_elb_attachment1" {
+  elb        = aws_elb.aws_rke2_ingress_elb.id
   count      = var.number_of_instances_control
   instance   = aws_instance.aws_ec2_instance_control[count.index].id
-  depends_on = [aws_elb.aws_rke2_ingress_lb]
+  depends_on = [aws_elb.aws_rke2_ingress_elb]
 }
 
-resource "aws_elb_attachment" "aws_rke2_elb_attachment4" {
-  elb        = aws_elb.aws_rke2_ingress_lb.id
+resource "aws_elb_attachment" "aws_rke2_ingress_elb_attachment2" {
+  elb        = aws_elb.aws_rke2_ingress_elb.id
   count      = var.number_of_instances_controls
   instance   = aws_instance.aws_ec2_instance_controls[count.index].id
-  depends_on = [aws_elb.aws_rke2_ingress_lb]
+  depends_on = [aws_elb.aws_rke2_ingress_elb]
 }
 
-resource "aws_elb_attachment" "aws_rke2_elb_attachment5" {
-  elb        = aws_elb.aws_rke2_ingress_lb.id
+resource "aws_elb_attachment" "aws_rke2_ingress_elb_attachment3" {
+  elb        = aws_elb.aws_rke2_ingress_elb.id
   count      = var.number_of_instances_worker
   instance   = aws_instance.aws_ec2_instance_worker[count.index].id
-  depends_on = [aws_elb.aws_rke2_ingress_lb]
+  depends_on = [aws_elb.aws_rke2_ingress_elb]
 }
