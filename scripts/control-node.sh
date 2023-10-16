@@ -34,6 +34,8 @@ net.ipv4.neigh.default.gc_thresh2=12288
 net.ipv4.neigh.default.gc_thresh3=16384
 net.ipv4.tcp_keepalive_time=600
 net.ipv4.ip_forward=1
+net.ipv6.conf.all.disable_ipv6 = 1
+net.ipv6.conf.default.disable_ipv6 = 1
 fs.inotify.max_user_instances=8192
 fs.inotify.max_user_watches=1048576
 EOF
