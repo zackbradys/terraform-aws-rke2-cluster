@@ -74,10 +74,8 @@ chmod 700 get_helm.sh && ./get_helm.sh
 mv /usr/local/bin/helm /usr/bin/helm
 
 ### Setup RKE2 Server
-mkdir -p /opt/rke2-artifacts
-cd /opt/rke2-artifacts
+mkdir -p /opt/rke2-artifacts/ /etc/rancher/rke2/ /var/lib/rancher/rke2/server/manifests/
 useradd -r -c "etcd user" -s /sbin/nologin -M etcd -U
-mkdir -p /etc/rancher/rke2/ /var/lib/rancher/rke2/server/manifests/
 
 ### Configure RKE2 Config
 cat << EOF >> /etc/rancher/rke2/config.yaml
@@ -107,7 +105,6 @@ kubelet-arg:
 - read-only-port=0
 - authorization-mode=Webhook
 - streaming-connection-idle-timeout=5m
-cloud-provider-name: aws
 token: $TOKEN
 tls-san:
   - $DOMAIN

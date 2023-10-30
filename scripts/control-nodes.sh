@@ -51,10 +51,8 @@ systemctl stop firewalld; systemctl disable firewalld; systemctl stop nm-cloud-s
 echo -e "[keyfile]\nunmanaged-devices=interface-name:cali*;interface-name:flannel*" > /etc/NetworkManager/conf.d/rke2-canal.conf
 
 ### Setup RKE2 Server
-mkdir -p /opt/rke2-artifacts
-cd /opt/rke2-artifacts
+mkdir -p /opt/rke2-artifacts/ /etc/rancher/rke2/ /var/lib/rancher/rke2/server/manifests/
 useradd -r -c "etcd user" -s /sbin/nologin -M etcd -U
-mkdir -p /etc/rancher/rke2/ /var/lib/rancher/rke2/server/manifests/
 
 ### Configure RKE2 Config
 cat << EOF >> /etc/rancher/rke2/config.yaml
@@ -84,7 +82,6 @@ kubelet-arg:
 - read-only-port=0
 - authorization-mode=Webhook
 - streaming-connection-idle-timeout=5m
-cloud-provider-name: aws
 server: https://$DOMAIN:9345
 token: $TOKEN
 tls-san:

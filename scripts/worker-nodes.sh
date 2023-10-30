@@ -56,6 +56,7 @@ mkdir -p /etc/rancher/rke2/
 ### Configure RKE2 Config
 cat << EOF >> /etc/rancher/rke2/config.yaml
 profile: cis-1.23
+selinux: true
 write-kubeconfig-mode: 0640
 kube-apiserver-arg:
 - authorization-mode=RBAC,Node
@@ -63,7 +64,6 @@ kubelet-arg:
 - protect-kernel-defaults=true
 - read-only-port=0
 - authorization-mode=Webhook
-cloud-provider-name: aws
 server: https://$DOMAIN:9345
 token: $TOKEN
 EOF
