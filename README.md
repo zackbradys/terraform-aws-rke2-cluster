@@ -14,7 +14,7 @@
 ```bash
 module "rke2-cluster" {
   source  = "zackbradys/rke2-cluster/aws"
-  version = "0.5.4"
+  version = "0.5.5"
 
   region        = "us-east-1"
   access_key    = "ACCESS_KEY_HERE"
