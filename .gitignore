@@ -8,3 +8,4 @@
 **/.terraform.lock.hcl
 **/*.tfstate
 **/*.tfstate.*
+**/*.tfvars
