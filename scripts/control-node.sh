@@ -105,6 +105,7 @@ kubelet-arg:
 - read-only-port=0
 - authorization-mode=Webhook
 - streaming-connection-idle-timeout=5m
+pod-security-admission-config-file: /etc/rancher/rke2/rancher-psact.yaml
 token: $TOKEN
 tls-san:
   - $DOMAIN
@@ -116,6 +117,68 @@ apiVersion: audit.k8s.io/v1
 kind: Policy
 rules:
 - level: RequestResponse
+EOF
+
+### Configure RKE2 PSS Pod Security Admissions
+cat << EOF >> /etc/rancher/rke2/rancher-psact.yaml
+apiVersion: apiserver.config.k8s.io/v1
+kind: AdmissionConfiguration
+plugins:
+  - name: PodSecurity
+    configuration:
+      apiVersion: pod-security.admission.config.k8s.io/v1
+      kind: PodSecurityConfiguration
+      defaults:
+        enforce: "restricted"
+        enforce-version: "latest"
+        audit: "restricted"
+        audit-version: "latest"
+        warn: "restricted"
+        warn-version: "latest"
+      exemptions:
+        usernames: []
+        runtimeClasses: []
+        namespaces: [calico-apiserver,
+                     calico-system,
+                     carbide-docs-system,
+                     carbide-stigatron-system,
+                     cattle-alerting,
+                     cattle-csp-adapter-system,
+                     cattle-elemental-system,
+                     cattle-epinio-system,
+                     cattle-externalip-system,
+                     cattle-fleet-local-system,
+                     cattle-fleet-system,
+                     cattle-gatekeeper-system,
+                     cattle-global-data,
+                     cattle-global-nt,
+                     cattle-impersonation-system,
+                     cattle-istio,
+                     cattle-istio-system,
+                     cattle-logging,
+                     cattle-logging-system,
+                     cattle-monitoring-system,
+                     cattle-neuvector-system,
+                     cattle-prometheus,
+                     cattle-provisioning-capi-system,
+                     cattle-resources-system,
+                     cattle-sriov-system,
+                     cattle-system,
+                     cattle-ui-plugin-system,
+                     cattle-windows-gmsa-system,
+                     cert-manager,
+                     cis-operator-system,
+                     fleet-default,
+                     fleet-local,
+                     ingress-nginx,
+                     istio-system,
+                     kube-node-lease,
+                     kube-public,
+                     kube-system,
+                     longhorn-system,
+                     rancher-alerting-drivers,
+                     security-scan,
+                     tigera-operator]
 EOF
 
 ### Download and Install RKE2 Server
