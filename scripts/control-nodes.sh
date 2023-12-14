@@ -82,7 +82,6 @@ kubelet-arg:
 - read-only-port=0
 - authorization-mode=Webhook
 - streaming-connection-idle-timeout=5m
-pod-security-admission-config-file: /etc/rancher/rke2/rancher-psact.yaml
 server: https://$DOMAIN:9345
 token: $TOKEN
 tls-san:
@@ -93,10 +92,21 @@ EOF
 cat << EOF >> /etc/rancher/rke2/audit-policy.yaml
 apiVersion: audit.k8s.io/v1
 kind: Policy
+metadata:
+  name: rke2-audit-policy
 rules:
-- level: RequestResponse
-EOF### Configure RKE2 PSS Pod Security Admissions
-cat << EOF >> /etc/rancher/rke2/rancher-psact.yaml
+  - level: Metadata
+    resources:
+    - group: ""
+      resources: ["secrets"]
+  - level: RequestResponse
+    resources:
+    - group: ""
+      resources: ["*"]
+EOF
+
+### Configure RKE2 PSS Pod Security Admissions
+cat << EOF >> /etc/rancher/rke2/rke2-pss.yaml
 apiVersion: apiserver.config.k8s.io/v1
 kind: AdmissionConfiguration
 plugins:
