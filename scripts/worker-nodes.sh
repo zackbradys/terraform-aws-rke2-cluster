@@ -57,7 +57,7 @@ mkdir -p /etc/rancher/rke2/
 cat << EOF >> /etc/rancher/rke2/config.yaml
 profile: cis-1.23
 selinux: true
-write-kubeconfig-mode: 0640
+write-kubeconfig-mode: 0600
 kube-apiserver-arg:
 - authorization-mode=RBAC,Node
 kubelet-arg:

@@ -62,7 +62,7 @@ mv /usr/local/bin/aws /usr/bin/aws
 ### Install Cosign
 mkdir -p /opt/rancher/cosign
 cd /opt/rancher/cosign
-curl -#OL https://github.com/sigstore/cosign/releases/download/v1.8.0/cosign-linux-amd64
+curl -#OL https://github.com/sigstore/cosign/releases/latest/download/cosign-linux-amd64
 mv cosign-linux-amd64 /usr/bin/cosign
 chmod 755 /usr/bin/cosign
 
@@ -70,7 +70,7 @@ chmod 755 /usr/bin/cosign
 mkdir -p /opt/rancher/helm
 cd /opt/rancher/helm
 curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
-chmod 700 get_helm.sh && ./get_helm.sh
+chmod 755 get_helm.sh && ./get_helm.sh
 mv /usr/local/bin/helm /usr/bin/helm
 
 ### Setup RKE2 Server
@@ -82,7 +82,7 @@ cat << EOF >> /etc/rancher/rke2/config.yaml
 profile: cis-1.23
 selinux: true
 secrets-encryption: true
-write-kubeconfig-mode: 0640
+write-kubeconfig-mode: 0600
 use-service-account-credentials: true
 kube-controller-manager-arg:
 - bind-address=127.0.0.1
@@ -97,6 +97,7 @@ kube-apiserver-arg:
 - tls-cipher-suites=TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
 - authorization-mode=RBAC,Node
 - anonymous-auth=false
+- admission-control-config-file=/etc/rancher/rke2/rancher-pss.yaml
 - audit-policy-file=/etc/rancher/rke2/audit-policy.yaml
 - audit-log-mode=blocking-strict
 - audit-log-maxage=30
@@ -127,8 +128,8 @@ rules:
       resources: ["*"]
 EOF
 
-### Configure RKE2 PSS Pod Security Admissions
-cat << EOF >> /etc/rancher/rke2/rke2-pss.yaml
+### Configure RKE2 Pod Security Standards
+cat << EOF >> /etc/rancher/rke2/rancher-pss.yaml
 apiVersion: apiserver.config.k8s.io/v1
 kind: AdmissionConfiguration
 plugins:
@@ -199,13 +200,14 @@ systemctl enable rke2-server.service && systemctl start rke2-server.service
 sudo ln -s /var/lib/rancher/rke2/data/v1*/bin/kubectl /usr/bin/kubectl
 sudo ln -s /var/run/k3s/containerd/containerd.sock /var/run/containerd/containerd.sock
 
-### Update BASHRC with KUBECONFIG/PATH
+### Update and Source BASHRC
 cat << EOF >> ~/.bashrc
-export KUBECONFIG=/etc/rancher/rke2/rke2.yaml
 export PATH=$PATH:/var/lib/rancher/rke2/bin:/usr/local/bin/
-export DOMAIN=$DOMAIN
-export TOKEN=$TOKEN
-export vRKE2=$vRKE2
+export KUBECONFIG=/etc/rancher/rke2/rke2.yaml
+export CRI_CONFIG_FILE=/var/lib/rancher/rke2/agent/etc/crictl.yaml
+export DOMAIN=${DOMAIN}
+export TOKEN=${TOKEN}
+export vRKE2=${vRKE2}
 alias k=kubectl
 EOF
 

@@ -3,7 +3,7 @@
 **Please review the information below and follow the instructions to deploy this module!**
 
 ## Prerequisites
-* Git Utility, Terminal Utility, and HashiCorp Terraform with Access to the AWS Provider
+* Git Utility, Terminal Utility, and HashiCorp Terraform with Access to the AWS Provider Plugin
 * AWS Commercial or AWS GovCloud Account with an Access Key and Secret Key
 
 ## Configuration

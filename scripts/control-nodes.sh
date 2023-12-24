@@ -59,7 +59,7 @@ cat << EOF >> /etc/rancher/rke2/config.yaml
 profile: cis-1.23
 selinux: true
 secrets-encryption: true
-write-kubeconfig-mode: 0640
+write-kubeconfig-mode: 0600
 use-service-account-credentials: true
 kube-controller-manager-arg:
 - bind-address=127.0.0.1
@@ -74,6 +74,7 @@ kube-apiserver-arg:
 - tls-cipher-suites=TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
 - authorization-mode=RBAC,Node
 - anonymous-auth=false
+- admission-control-config-file=/etc/rancher/rke2/rancher-pss.yaml
 - audit-policy-file=/etc/rancher/rke2/audit-policy.yaml
 - audit-log-mode=blocking-strict
 - audit-log-maxage=30
@@ -105,8 +106,8 @@ rules:
       resources: ["*"]
 EOF
 
-### Configure RKE2 PSS Pod Security Admissions
-cat << EOF >> /etc/rancher/rke2/rke2-pss.yaml
+### Configure RKE2 Pod Security Standards
+cat << EOF >> /etc/rancher/rke2/rancher-pss.yaml
 apiVersion: apiserver.config.k8s.io/v1
 kind: AdmissionConfiguration
 plugins:

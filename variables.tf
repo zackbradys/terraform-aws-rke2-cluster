@@ -31,7 +31,7 @@ variable "prefix" {
 
 ### Common Optional Variables
 variable "ami_id" {
-  default     = "ami-026ebd4cfe2c043b2"
+  default     = "ami-079db87dc4c10ac91"
   type        = string
   description = "(Optional) The AWS AMI ID to use for the instance(s)."
 }
@@ -43,7 +43,7 @@ variable "token" {
 }
 
 variable "vRKE2" {
-  default     = "v1.25"
+  default     = "v1.26"
   type        = string
   description = "(Optional) The RKE2 Version to use for the clusters(s)."
 }
@@ -69,19 +69,19 @@ variable "private_subnet_cidr_blocks" {
 
 ### Instance Variables
 variable "instance_type_control" {
-  default     = "m5.2xlarge"
+  default     = "m5.xlarge"
   type        = string
   description = "(Optional) The AWS Instance type to use for the instance(s)."
 }
 
 variable "instance_type_controls" {
-  default     = "m5.2xlarge"
+  default     = "m5.xlarge"
   type        = string
   description = "(Optional) The AWS Instance type to use for the instance(s)."
 }
 
 variable "instance_type_worker" {
-  default     = "m5.xlarge"
+  default     = "m5.2xlarge"
   type        = string
   description = "(Optional) The AWS Instance type to use for the instance(s)."
 }
@@ -136,7 +136,7 @@ variable "volume_size_worker" {
 }
 
 variable "volume_size_bastion" {
-  default     = 32
+  default     = 64
   type        = number
   description = "(Optional) The AWS Volume Size to use for the instance(s)."
 }
