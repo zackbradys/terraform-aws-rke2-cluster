@@ -1,6 +1,6 @@
 resource "aws_iam_role" "aws_iam_role_control" {
   name        = "${var.prefix}-iam-role-control"
-  description = "AWS RKE2 CCM Control Node IAM Role"
+  description = "AWS RKE2 Control Node IAM Role"
   depends_on  = [aws_vpc.aws_rke2_vpc]
 
   assume_role_policy = jsonencode({
@@ -110,7 +110,7 @@ resource "aws_iam_instance_profile" "aws_iam_profile_control" {
 
 resource "aws_iam_role" "aws_iam_role_worker" {
   name        = "${var.prefix}-iam-role-worker"
-  description = "AWS RKE2 CCM Worker Node IAM Role"
+  description = "AWS RKE2 Worker Node IAM Role"
   depends_on  = [aws_vpc.aws_rke2_vpc]
 
   assume_role_policy = jsonencode({
