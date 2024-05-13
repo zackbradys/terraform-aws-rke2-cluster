@@ -31,7 +31,7 @@ variable "prefix" {
 
 ### Common Optional Variables
 variable "ami_id" {
-  default     = "ami-0a3c3a20c09d6f377"
+  default     = "ami-04e5276ebb8451442"
   type        = string
   description = "(Optional) The AWS AMI ID to use for the instance(s)."
 }
