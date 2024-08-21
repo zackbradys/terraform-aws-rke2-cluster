@@ -31,7 +31,7 @@ variable "prefix" {
 
 ### Common Optional Variables
 variable "ami_id" {
-  default     = "ami-04e5276ebb8451442"
+  default     = "ami-066784287e358dad1"
   type        = string
   description = "(Optional) The AWS AMI ID to use for the instance(s)."
 }
@@ -43,7 +43,7 @@ variable "token" {
 }
 
 variable "vRKE2" {
-  default     = "v1.27"
+  default     = "v1.28"
   type        = string
   description = "(Optional) The RKE2 Version to use for the clusters(s)."
 }
