@@ -16,7 +16,7 @@
 ```bash
 module "rke2-cluster" {
   source  = "zackbradys/rke2-cluster/aws"
-  version = "1.1.0"
+  version = "1.2.0"
 
   region        = "us-east-1"
   access_key    = "ACCESS_KEY_HERE"
@@ -45,7 +45,7 @@ Please utilize GitHubs features such as Issues, Forks, and Pull Requests to cont
 
 ### About Me
 
-A little bit about me and my history in the industry. If you have any questions, please reach out to me over on my [GitHub](https://github.com/zackbradys)!
+A little bit about me and my history in the industry. If you have any questions, please reach out to me at zbrady@zackbrady.com!
 
 - Former Contractor
 - U.S. Military Reservist
