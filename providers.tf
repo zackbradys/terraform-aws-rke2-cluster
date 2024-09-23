@@ -16,7 +16,8 @@ provider "aws" {
 
   default_tags {
     tags = {
-      provisioner                      = "terraform"
+      "KeepRunning"                    = "true"
+      "provisioner"                    = "terraform"
       "kubernetes.io/cluster/aws-rke2" = "shared"
     }
   }

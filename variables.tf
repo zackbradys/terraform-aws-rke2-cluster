@@ -31,7 +31,7 @@ variable "prefix" {
 
 ### Common Optional Variables
 variable "ami_id" {
-  default     = "ami-066784287e358dad1"
+  default     = "ami-0ebfd941bbafe70c6"
   type        = string
   description = "(Optional) The AWS AMI ID to use for the instance(s)."
 }
@@ -69,13 +69,13 @@ variable "private_subnet_cidr_blocks" {
 
 ### Instance Variables
 variable "instance_type_control" {
-  default     = "m5.xlarge"
+  default     = "m5.2xlarge"
   type        = string
   description = "(Optional) The AWS Instance type to use for the instance(s)."
 }
 
 variable "instance_type_controls" {
-  default     = "m5.xlarge"
+  default     = "m5.2xlarge"
   type        = string
   description = "(Optional) The AWS Instance type to use for the instance(s)."
 }
