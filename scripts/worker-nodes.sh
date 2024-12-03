@@ -55,7 +55,7 @@ mkdir -p /etc/rancher/rke2/
 
 # Configure RKE2 Config
 cat << EOF >> /etc/rancher/rke2/config.yaml
-profile: cis-1.23
+profile: cis
 selinux: true
 write-kubeconfig-mode: 0600
 kube-apiserver-arg:

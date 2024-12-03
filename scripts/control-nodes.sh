@@ -56,10 +56,11 @@ useradd -r -c "etcd user" -s /sbin/nologin -M etcd -U
 
 # Configure RKE2 Config
 cat << EOF >> /etc/rancher/rke2/config.yaml
-profile: cis-1.23
+profile: cis
 selinux: true
 secrets-encryption: true
 write-kubeconfig-mode: 0600
+embedded-registry: true
 use-service-account-credentials: true
 kube-controller-manager-arg:
 - bind-address=127.0.0.1
@@ -142,6 +143,7 @@ plugins:
                      cattle-impersonation-system,
                      cattle-istio,
                      cattle-istio-system,
+                     cattle-kubewarden-system,
                      cattle-logging,
                      cattle-logging-system,
                      cattle-monitoring-system,
