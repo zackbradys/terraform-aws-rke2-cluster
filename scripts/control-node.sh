@@ -42,8 +42,7 @@ EOF
 sysctl -p > /dev/null 2>&1
 
 # Install Packages
-yum install -y iptables container-selinux libnetfilter_conntrack libnfnetlink libnftnl policycoreutils-python-utils cryptsetup
-yum install -y nfs-utils iscsi-initiator-utils; yum install -y zip zstd tree jq
+yum install -y iptables container-selinux libnetfilter_conntrack libnfnetlink libnftnl policycoreutils-python-utils cryptsetup nfs-utils iscsi-initiator-utils zip zstd tree jq
 
 # Install Cosign
 mkdir -p /opt/rancher/cosign
@@ -170,9 +169,11 @@ plugins:
                      cattle-windows-gmsa-system,
                      cert-manager,
                      cis-operator-system,
+                     compliance-operator-system,
                      fleet-default,
                      fleet-local,
                      harbor-system,
+                     hauler-system,
                      ingress-nginx,
                      istio-system,
                      kube-node-lease,
@@ -181,6 +182,7 @@ plugins:
                      longhorn-system,
                      rancher-alerting-drivers,
                      security-scan,
+                     sr-operator-system,
                      tigera-operator]
 EOF
 
