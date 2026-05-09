@@ -128,7 +128,6 @@ plugins:
         namespaces: [calico-apiserver,
                      calico-system,
                      carbide-docs-system,
-                     carbide-stigatron-system,
                      cattle-alerting,
                      cattle-csp-adapter-system,
                      cattle-elemental-system,
