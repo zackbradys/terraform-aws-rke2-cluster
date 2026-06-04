@@ -45,7 +45,7 @@ Please utilize GitHubs features such as Issues, Forks, and Pull Requests to cont
 
 ### About Me
 
-A little bit about me and my history in the industry. If you have any questions, please reach out to me at zbrady@zackbrady.com!
+A little bit about me and my history in the industry. If you have any questions, please reach out to me at zhbrady@zackbrady.com!
 
 - Former Contractor
 - U.S. Military Reservist
