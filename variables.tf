@@ -19,6 +19,11 @@ variable "key_pair_name" {
   description = "(Required) The AWS Key Pair name to use for the instance(s)."
 }
 
+variable "ami_id" {
+  type        = string
+  description = "(Required) The AWS AMI ID to use for the instance(s)."
+}
+
 variable "domain" {
   type        = string
   description = "(Required) The AWS Route53 domain to use for the cluster(s)."
@@ -30,12 +35,6 @@ variable "prefix" {
 }
 
 ### Common Optional Variables
-variable "ami_id" {
-  default     = "ami-02dfbd4ff395f2a1b"
-  type        = string
-  description = "(Optional) The AWS AMI ID to use for the instance(s)."
-}
-
 variable "token" {
   default     = "awsRKE2terraform"
   type        = string
@@ -43,7 +42,7 @@ variable "token" {
 }
 
 variable "vRKE2" {
-  default     = "v1.30"
+  default     = "v1.36"
   type        = string
   description = "(Optional) The RKE2 Version to use for the clusters(s)."
 }
@@ -118,25 +117,25 @@ variable "number_of_instances_bastion" {
 
 ### Storage Variables
 variable "volume_size_control" {
-  default     = 128
-  type        = number
-  description = "(Optional) The AWS Volume Size to use for the instance(s)."
-}
-
-variable "volume_size_controls" {
-  default     = 128
-  type        = number
-  description = "(Optional) The AWS Volume Size to use for the instance(s)."
-}
-
-variable "volume_size_worker" {
   default     = 256
   type        = number
   description = "(Optional) The AWS Volume Size to use for the instance(s)."
 }
 
+variable "volume_size_controls" {
+  default     = 256
+  type        = number
+  description = "(Optional) The AWS Volume Size to use for the instance(s)."
+}
+
+variable "volume_size_worker" {
+  default     = 1028
+  type        = number
+  description = "(Optional) The AWS Volume Size to use for the instance(s)."
+}
+
 variable "volume_size_bastion" {
-  default     = 64
+  default     = 128
   type        = number
   description = "(Optional) The AWS Volume Size to use for the instance(s)."
 }

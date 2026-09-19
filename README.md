@@ -4,7 +4,7 @@
 
 ## Prerequisites
 
-- Git Utility, Terminal Utility, and HashiCorp Terraform with Access to the AWS Provider Plugin
+- Git Utility, Terminal Utility, and Terraform with Access to the AWS Provider Plugin
 - AWS Commercial or AWS GovCloud Account with the appropriate elevated privileges to interact with AWS Services
 
 ## Configuration
@@ -16,12 +16,13 @@
 ```bash
 module "rke2-cluster" {
   source  = "zackbradys/rke2-cluster/aws"
-  version = "1.3.1"
+  version = "1.4.0"
 
   region        = "us-east-1"
   access_key    = "ACCESS_KEY_HERE"
   secret_key    = "SECRET_KEY_HERE"
   key_pair_name = "AWS_KEY_PAIR_NAME"
+  ami_id        = "ami-05069872fd6925930"
   domain        = "example.com"
   prefix        = "rke2-cluster"
 }
@@ -42,13 +43,3 @@ terraform apply --auto-approve
 ### Contributing
 
 Please utilize GitHubs features such as Issues, Forks, and Pull Requests to contribute to this code!
-
-### About Me
-
-A little bit about me and my history in the industry. If you have any questions, please reach out to me at zhbrady@zackbrady.com!
-
-- Former Contractor
-- U.S. Military Reservist
-- Open-Source Contributor
-- Built and Exited a Digital Firm
-- Active Volunteer Firefighter/EMT
